@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
 
 
@@ -20,7 +21,12 @@ const Home = () => {
       <FooterBanner />
 
     </>
-  )
+  );
 }
 
+// Use for next.js when pre-rendering a page. Server-side will request the data (API) and return it -- ASYNC
+export const getServerSideProps = async => {
+  // Grabbing all products from our Sanity dashboard
+  const query = '[*_type == "product"]';
+}
 export default Home;
