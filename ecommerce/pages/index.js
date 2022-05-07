@@ -4,7 +4,7 @@ import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
 
 
-const Home = () => {
+const Home = ({ products, bannerData }) => {
   return (
     <>
       <HeroBanner />
@@ -15,7 +15,7 @@ const Home = () => {
       </div>
 
       <div className="products-container">
-        {['Product 1', 'Product 2'].map((product) => product)}
+        {products?.map((product) => product.name)}
       </div>
 
       <FooterBanner />
@@ -25,8 +25,16 @@ const Home = () => {
 }
 
 // Use for next.js when pre-rendering a page. Server-side will request the data (API) and return it -- ASYNC
-export const getServerSideProps = async => {
+export const getServerSideProps = async () => {
   // Grabbing all products from our Sanity dashboard
-  const query = '[*_type == "product"]';
+  const query = '*[_type == "product"]';
+  const products = await client.fetch(query);
+
+  const bannerQuery = '*[_type == "banner"]';
+  const bannerData = await client.fetch(bannerQuery);
+
+  return {
+    props: { products, bannerData }
+  }
 }
 export default Home;
