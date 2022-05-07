@@ -4,25 +4,24 @@ import { client } from '../lib/client';
 import { Product, FooterBanner, HeroBanner } from '../components';
 
 
-const Home = ({ products, bannerData }) => {
-  return (
-    <>
-      <HeroBanner />
+const Home = ({ products, bannerData }) => (
+  <div>
+    <HeroBanner />
 
-      <div className="products-heading">
-        <h2>Best Selling Products</h2>
-        <p>Boogly Woogly Sounds</p>
-      </div>
+    <div className="products-heading">
+      <h2>Best Selling Products</h2>
+      <p>Boogly Woogly Sounds</p>
+    </div>
 
-      <div className="products-container">
-        {products?.map((product) => product.name)}
-      </div>
+    <div className="products-container">
+      {products?.map((product) => product.name)}
+    </div>
 
-      <FooterBanner />
+    <FooterBanner />
 
-    </>
-  );
-}
+  </div>
+);
+
 
 // Use for next.js when pre-rendering a page. Server-side will request the data (API) and return it -- ASYNC
 export const getServerSideProps = async () => {
