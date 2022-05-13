@@ -29,7 +29,7 @@ export const getServerSideProps = async () => {
   // Grabbing all products from our Sanity dashboard
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
-
+  //Grabbing all banner data from our Sanity dashboard
   const bannerQuery = '*[_type == "banner"]';
   const bannerData = await client.fetch(bannerQuery);
 
