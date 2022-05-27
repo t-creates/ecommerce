@@ -18,7 +18,21 @@ export const StateContext = ({ children }) => {
   // Total Quantity
   const [totalQuantities, settotalQuantities] = useState();
   // Quantity
-  const [qty, setqty] = useState(1);
+  const [qty, setQty] = useState(1);
+
+
+  // Increase & decrease quantity logic
+  const incQty = () => {
+    setQty((prevQty) => prevQty + 1);
+  }
+
+  const decQty = () => {
+    setQty((prevQty) => {
+      if (prevQty - 1 < 1) return 1;
+
+      return prevQty - 1;
+    });
+  }
 
   // Context Provider
   return (
@@ -32,7 +46,10 @@ export const StateContext = ({ children }) => {
       }}
     >
       {children}
-      </Context.Provider>
+    </Context.Provider>
   )
 }
+
+
+export const useStateContext = () => useContext(Context);
 
