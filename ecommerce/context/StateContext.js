@@ -20,6 +20,10 @@ export const StateContext = ({ children }) => {
   // Quantity
   const [qty, setQty] = useState(1);
 
+  // Adding to cart
+  const onAdd = (product, quantity) => {
+    const checkProductInCart = cartItems.find((item) => item._id === product._id);
+  }
 
   // Increase & decrease quantity logic
   const incQty = () => {
@@ -42,7 +46,9 @@ export const StateContext = ({ children }) => {
         cartItems,
         totalPrice,
         totalQuantities,
-        qty
+        qty,
+        incQty,
+        decQty
       }}
     >
       {children}
@@ -50,6 +56,6 @@ export const StateContext = ({ children }) => {
   )
 }
 
-
+// Let's us use state easily in the [slug] file
 export const useStateContext = () => useContext(Context);
 
