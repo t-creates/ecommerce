@@ -16,13 +16,25 @@ export const StateContext = ({ children }) => {
   // Total Price
   const [totalPrice, setTotalPrice] = useState();
   // Total Quantity
-  const [totalQuantities, settotalQuantities] = useState();
+  const [totalQuantities, setTotalQuantities] = useState();
   // Quantity
   const [qty, setQty] = useState(1);
 
   // Adding to cart
   const onAdd = (product, quantity) => {
     const checkProductInCart = cartItems.find((item) => item._id === product._id);
+
+    if (checkProductInCart) {
+      setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
+      setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
+
+      const updatedCartItems = cartItems.map((cartProduct) => {
+        if (cartProduct._id === product._id) return {
+          ...cartProduct,
+          quantity: cartProduct.quantity + quantity
+        }
+      })
+    }
   }
 
   // Increase & decrease quantity logic
