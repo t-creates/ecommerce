@@ -1,5 +1,5 @@
 // This file is used to manage the entire STATE of the project. 
-
+// git streak alive!
 import React, { createContext, useContext, useState, useEffect } from 'react';
 // Toast is a pop up notification when we manipulate the cart data.
 import { toast } from 'react-hot-toast';
